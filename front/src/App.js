@@ -1,41 +1,25 @@
-import Login from "./views/login/login.js";
+import Menu from "./views/menu/menu.js";
+import CadastrarUsuario from "./views/usuario/cadastrarUsuario.js";
+import ListarUsuario from "./views/usuario/listarUsuarios.js";
 import './App.css';
-import GlobalProvider from './utils/global.js';
 import HttpProvider from './utils/http.js';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./views/layout/layout.js";
-import PrivateRoute from "./views/privateRoute/privateRoute.js";
+import EditarUsuario from './views/usuario/editarUsuario.js';
 
 function App() {
   return (
-    <GlobalProvider>
     <HttpProvider>
       <Router>
         <div className="App">
+          <Menu/>
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route
-              exact
-              path="/layout"
-              element={
-                <PrivateRoute>
-                  <Layout />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="*"
-              element={
-                <PrivateRoute>
-                  <Layout />
-                </PrivateRoute>
-              }
-            />
+            <Route exact path='/' element={<CadastrarUsuario />} />
+            <Route exact path='/listarUsuario' element={<ListarUsuario />} />
+            <Route path='/usuario/editar/:idUsuario' element={<EditarUsuario />} />
           </Routes>
         </div>
       </Router>
     </HttpProvider>
-  </GlobalProvider>
   );
 }
 

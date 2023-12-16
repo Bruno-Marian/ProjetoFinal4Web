@@ -1,0 +1,25 @@
+package com.example.demo.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.models.LoginModel;
+
+@CrossOrigin(origins = "http://localhost:3000")
+@RestController
+@RequestMapping("/login")
+public class LoginController {
+	
+	@PostMapping
+	public ResponseEntity<String> validarLogin(@RequestBody LoginModel login) {
+		if (login.getUsuario().equals("admin") && login.getSenha().equals("admin")) {
+			return ResponseEntity.status(HttpStatus.OK).body("Usuário logado com sucesso!");
+			}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body('{"message":"Usuário e/ou senha inválidos!"}');
+	}
+}
