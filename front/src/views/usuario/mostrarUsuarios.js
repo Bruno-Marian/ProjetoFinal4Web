@@ -13,7 +13,7 @@ export default function MostrarUsuarios(props) {
 
     return (
 
-        <div className="conatiner">
+        <div className="container">
             <div className="card col-md-12">
                 <div className="card-body">
                     <h3 className="card-title">{props.usuario.login}</h3>
